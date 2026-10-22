@@ -58,8 +58,12 @@ begin
   base_handle := regexp_replace(coalesce(new.raw_user_meta_data->>'handle', split_part(new.email, '@', 1), 'estrelinha'), '[^A-Za-z0-9_.]', '', 'g');
   base_handle := substring(base_handle from 1 for 18);
   if length(base_handle) < 3 then base_handle := 'user' || substring(replace(new.id::text,'-','') from 1 for 8); end if;
+  if length(base_handle) < 3 then base_handle := 'user' || substring(replace(new.id::text,'-','') from 1 for 8); end if;
+  if exists (select 1 from public.profiles p where lower(p.handle) = lower(base_handle)) then
+    base_handle := substring(base_handle from 1 for 18) || '_' || substring(replace(new.id::text,'-','') from 1 for 4);
+  end if;
   insert into public.profiles(id, handle, display_name)
-  values(new.id, base_handle || '_' || substring(replace(new.id::text,'-','') from 1 for 4), coalesce(nullif(new.raw_user_meta_data->>'display_name',''), 'Nova estrelinha'))
+  values(new.id, base_handle, coalesce(nullif(new.raw_user_meta_data->>'display_name',''), 'Nova estrelinha'))
   on conflict (id) do nothing;
   return new;
 end;
