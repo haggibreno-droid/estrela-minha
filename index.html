@@ -15,6 +15,12 @@ body{background-color:#e6f4ff;background-image:radial-gradient(#fff 1px,transpar
 .brand{text-shadow:2px 2px #316ac5,3px 3px #fff;letter-spacing:0}.panel{border-radius:2px;border:3px ridge #c8cdd8;box-shadow:2px 3px 0 #536b8b44}.ph{background:linear-gradient(90deg,#316ac5,#8ccfff 70%,#e6f4ff);color:#fff;border-bottom:2px solid #6889b8;text-shadow:1px 1px #244d91}button{border-radius:2px;box-shadow:inset 1px 1px #fff,1px 2px #8a9bb4}input,textarea,select{border-radius:1px}
 .chat-layout{display:grid;grid-template-columns:minmax(180px,225px) minmax(0,1fr) minmax(180px,220px);gap:12px;align-items:stretch}.chat-window{background:#fff;border:3px ridge #c8cdd8;min-width:0;box-shadow:3px 4px #476b9530}.chat-titlebar{background:linear-gradient(90deg,#2459b0,#77bfff);color:white;padding:9px 11px;font-weight:bold;display:flex;justify-content:space-between;gap:8px}.chat-sidebar,.chat-tools{background:#f3f8ff;border:2px inset #d0d9e6;padding:12px;min-width:0}.chat-profile{display:flex;align-items:center;gap:9px;margin-bottom:14px}.chat-avatar{width:42px;height:42px;display:grid;place-items:center;background:linear-gradient(135deg,#dceeff,#c9b5ff);border:2px ridge white;font-size:20px;flex-shrink:0}.chat-history{display:grid;gap:6px;margin-top:10px}.chat-history button{text-align:left;box-shadow:none;background:#fff;border:1px solid #c3d4e7}.chat-history button.active{background:#dbeeff;border-color:#316ac5}.chat-status{font-size:11px;color:#486887}.chat-messages{height:360px;overflow:auto;padding:13px;background:#fbfdff;background-image:radial-gradient(#d7e5f7 1px,transparent 1px);background-size:14px 14px}.chat-date{text-align:center;font-size:11px;color:#637b98;margin:4px auto 13px}.chat-message{max-width:86%;margin:8px 0;padding:9px 11px;border:1px solid #b3cbe7;background:#fff;overflow-wrap:anywhere;white-space:pre-wrap;box-shadow:2px 2px #d9e7f7}.chat-message.mine{margin-left:auto;background:#e3f2ff;border-color:#8db9e9}.chat-message .meta{font-size:10px;color:#637b98;margin-bottom:4px}.chat-compose{padding:10px;border-top:2px ridge #d5deea;background:#f2f6fc}.chat-compose textarea{min-height:70px;max-height:150px}.chat-compose-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}.pixel-picker{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;max-height:210px;overflow:auto;margin:8px 0}.pixel-button{padding:4px!important;min-height:39px;background:#fff!important;box-shadow:none!important;border:1px solid #c4d6ea!important;display:grid;place-items:center}.pixel-button svg{width:27px;height:27px;image-rendering:pixelated}.pixel-tag svg{width:20px;height:20px;vertical-align:middle;image-rendering:pixelated}.vinyl{width:120px;height:120px;margin:12px auto;border-radius:50%;background:repeating-radial-gradient(circle,#171b27 0 3px,#353a48 4px 5px,#171b27 6px 8px);display:grid;place-items:center;border:2px solid #171b27}.vinyl-label{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#a9d8ff,#c9b5ff);border:3px solid #f5f7fc;display:grid;place-items:center;color:#25344b;font-size:11px;text-align:center}.vinyl.animate{animation:vinyl-spin 3.5s linear infinite}@keyframes vinyl-spin{to{transform:rotate(360deg)}}.font-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:7px}.chat-tools .tiny{line-height:1.5}
 @media(max-width:950px){.chat-layout{grid-template-columns:190px minmax(0,1fr)}.chat-tools{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}@media(max-width:620px){.chat-layout{grid-template-columns:minmax(0,1fr)}.chat-sidebar,.chat-tools{grid-column:auto}.chat-messages{height:45vh;min-height:260px}.chat-tools{display:block}.pixel-picker{grid-template-columns:repeat(8,minmax(0,1fr))}}
+
+/* Palette preference: no pink tones */
+.mood.chosen{background:#e0eaff;border:2px solid #6489b8}
+.day.mark{background:#e4eaff;border-color:#8a9fcb}
+.top:after{color:#fff;text-shadow:1px 1px #316ac5}
+
 </style>
 </head>
 <body><div class="wrap">
@@ -42,13 +48,13 @@ body{background-color:#e6f4ff;background-image:radial-gradient(#fff 1px,transpar
 const KEY='estrela-minha-v1';
 const moods=[['✨','Feliz'],['💗','Amado'],['🌷','Tranquilo'],['☁️','Pensativo'],['🌧️','Triste'],['⚡','Ansioso'],['🔥','Irritado'],['🌙','Cansado'],['🪐','Confuso'],['🌈','Esperançoso'],['🫧','Sensível'],['🖤','Solitário'],['⭐','Orgulhoso de mim'],['💫','Sobrevivendo'],['💜','Outro']];
 const themes={
-'Sky Angel':['#8bd5ff','#ffb6df','#f9fcff','#347ec2'],
-'Pink Glitter':['#ffb6df','#bfa8ff','#fff9fd','#c15c9b'],
-'Lime Web':['#d8f56c','#fff08a','#fffff1','#648a2b'],
-'Purple Dream':['#c9b6ff','#ffb6df','#fcfaff','#8065bc'],
-'Ocean Pixel':['#51d7df','#8bbcff','#f1ffff','#247e9e'],
-'Victorious Vibes':['#ff85b9','#c4f16d','#fffafd','#d64f9c'],
-'MySpace 2004':['#a4c8f0','#e5b4f2','#f8fbff','#496ba2']};
+'Blue Angel':['#a9d8ff','#e6f4ff','#ffffff','#316ac5'],
+'Lilac Pixel':['#c9b5ff','#e7e0ff','#fcfaff','#8065bc'],
+'Silver Windows':['#c8cdd8','#e6edf6','#ffffff','#6f809a'],
+'Ocean Pixel':['#51d7df','#a9d8ff','#f1ffff','#247e9e'],
+'Lavender Dream':['#b9b4ff','#dce6ff','#fcfaff','#706bb4'],
+'Cloud Chrome':['#dce7f4','#a9d8ff','#ffffff','#6489b8'],
+'MySpace 2004':['#a4c8f0','#c9b5ff','#f8fbff','#496ba2']};
 const messages=[
 'Você não precisa transformar todos os dias em uma grande conquista. Às vezes, continuar aqui e tentar novamente já é muita coisa.',
 'Não confunda estar em processo com estar ficando para trás.',
